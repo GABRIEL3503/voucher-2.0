@@ -9,7 +9,7 @@ function generateVoucherID() {
    
   
     // Enviar petición al backend para crear un nuevo voucher
-    const response = await fetch('http://localhost:3000/create', {
+    const response = await fetch('https://vauchers1-0.onrender.com/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
