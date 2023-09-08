@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 // Endpoint para crear un nuevo voucher
 app.post('/create', (req, res) => {
+    console.log("Petición recibida en /create:", req.body);
   const { id, message } = req.body;
   const query = 'INSERT INTO vouchers (id, message, redeemed) VALUES (?, ?, 0)';
   db.run(query, [id, message], function(err) {
