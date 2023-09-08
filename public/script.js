@@ -6,10 +6,11 @@ function generateVoucherID() {
   // Función para crear un nuevo voucher
   async function createVoucher(message) {  
     const id = generateVoucherID();
-   
-  
+    console.log("Generated Voucher ID:", id);
+
     // Enviar petición al backend para crear un nuevo voucher
     const response = await fetch('https://vauchers1-0.onrender.com/create', {
+      
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -31,25 +31,6 @@ app.post('/create', (req, res) => {
   });
 });
 
-// Endpoint para validar un voucher
-app.get('/validate/:id', (req, res) => {
-  const { id } = req.params;
-  const query = 'SELECT * FROM vouchers WHERE id = ? AND redeemed = 0';
-  db.get(query, [id], (err, row) => {
-    if (err || !row) {
-      res.status(404).send('Voucher no encontrado o ya canjeado');
-      return;
-    }
-    // Marcar como canjeado
-    db.run('UPDATE vouchers SET redeemed = 1 WHERE id = ?', [id], function(err) {
-      if (err) {
-        res.status(500).send('Error al actualizar el estado del voucher');
-        return;
-      }
-      res.status(200).send(`Voucher válido: ${row.message}`);
-    });
-  });
-});
 
 // Iniciar el servidor
 app.listen(3000, () => {
