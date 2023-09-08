@@ -20,11 +20,11 @@ function generateVoucherID() {
     if (response.ok) {
       // Generar QR con el ID del voucher
       new QRCode(document.getElementById("qrcode"), {
-        text: `http://tu-sitio-web.com/validar?voucher_id=${id}`,
+        text: `https://vauchers1-0.onrender.com/validate.html?voucher_id=${id}`,
         width: 128,
         height: 128
       });
-  
+      
     
   
   // Mostrar alerta de éxito con Sweet Alert
