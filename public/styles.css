@@ -20,49 +20,54 @@ body {
   }
   
   .modal-content {
-    height: 550px;
+    height: 695px;
     background: #fff;
-    padding: 54px;
+    padding: 64px;
     width: 80%;
     max-width: 700px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 7px 9px rgb(0 0 0 / 55%)
   }
   
   .modal-footer {
+    margin-top: 22px;
     text-align: center;
-    padding-top: 100px;
+    /* padding-top: 100px; */
   }
   
   /* Estilos de los elementos del modal */
   .modal h4 {
     margin-top: 0;
-    font-size: 24px;
+    font-size: 34px;
   }
   
   label {
+    font-size: 35px;
     font-weight: 500;
     margin-top: 14px;
   }
   
   input[type="text"],
   input[type="date"] {
+    font-size: 26px;
     margin-bottom: 19px;
     width: 100%;
-    padding: 8px;
+    padding: 21px;
     margin-top: 9px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
   
   button {
-    background-color: #007bff;
+    font-size: 30px;
+    background-color: #b97f77;
     color: white;
-    padding: 10px 20px;
+    padding: 22px 43px;
     border: none;
-    border-radius: 4px;
+    border-radius: 9px;
     cursor: pointer;
-  }
+}
+  
   
   button:hover {
     background-color: #0056b3;
@@ -91,8 +96,8 @@ body {
   }
 
   #showHistory{
-    margin-top: 137px;
-    background-color: grey;
+    margin-top: 247px;
+    background-color:#8c938f;
   }.center-button {
     display: block;
     margin: auto;
@@ -140,5 +145,5 @@ color: #363636;
   }
 
   h1{
-    font-size: 3em!important;
+    font-size: 3.5em!important;
   }
