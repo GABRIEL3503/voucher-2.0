@@ -166,3 +166,8 @@ color: #363636;
 button:active{
     background-color: #599b6c!important;
 }
+
+#swal2-content{
+    font-size: 38px;
+
+}
