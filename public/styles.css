@@ -134,4 +134,6 @@ color: #363636;
   html body.swal2-height-auto {
     height: 99vh !important;
   }
-  
+  #qrcode canvas{
+    width: 256px !important;
+  }
