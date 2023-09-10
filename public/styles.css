@@ -79,7 +79,7 @@ body {
     align-items: center;
   }
   #companyLogo{
-    width: 234px;
+    width: 314px;
   }
   #voucherCard{
     justify-content: space-around;
@@ -129,6 +129,7 @@ body {
   }
   
   #toText, #fromText, #validUntilText{
+    font-size: 38px; 
 color: #363636;
   }
   html body.swal2-height-auto {
@@ -136,4 +137,8 @@ color: #363636;
   }
   #qrcode canvas{
     width: 256px !important;
+  }
+
+  h1{
+    font-size: 3em!important;
   }
