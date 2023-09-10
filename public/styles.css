@@ -69,9 +69,7 @@ body {
 }
   
   
-  button:hover {
-    background-color: #0056b3;
-  }
+ 
   .containermod{
     display: flex;
     flex-direction: column;
@@ -146,4 +144,25 @@ color: #363636;
 
   h1{
     font-size: 3.5em!important;
+  }/* Cambiar el ancho */
+  .swal2-popup{
+    width: 699px!important;
   }
+  .swal2-title {
+    font-size: 45px !important;
+  }
+  
+  .swal2-content {
+    font-size: 18px !important;
+  }
+.swal2-styled.swal2-confirm{
+    padding: 21px!important;
+    font-size: 2em!important;
+    background-color: #599b6c!important;
+}
+.swal2-styled.swal2-confirm:active{
+    background-color: #599b6c!important;
+}
+button:active{
+    background-color: #599b6c!important;
+}
