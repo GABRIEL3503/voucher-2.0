@@ -1,0 +1,131 @@
+/* Estilos generales */
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url('img/Diseño\ sin\ título\ \(6\).png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+  
+  .modal-content {
+    
+    background: #fff;
+    padding: 54px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal-footer {
+    text-align: center;
+    padding-top: 60px;
+  }
+  
+  /* Estilos de los elementos del modal */
+  .modal h4 {
+    margin-top: 0;
+    font-size: 24px;
+  }
+  
+  label {
+    font-weight: 500;
+    margin-top: 14px;
+  }
+  
+  input[type="text"],
+  input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  .containermod{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cardcointainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #companyLogo{
+    width: 234px;
+  }
+  #voucherCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #showHistory{
+    margin-top: 137px;
+    background-color: grey;
+  }.center-button {
+    display: block;
+    margin: auto;
+    margin-top: -89px;
+  }
+  #voucherCard {
+    margin-bottom: 32px;
+    width: 400px; /* Dimensiones fijas */
+    background: #ffffff; /* Fondo blanco */
+    border: 2px solid #ccc; /* Borde gris */
+    border-radius: 10px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Centrar el contenido de texto */
+    font-size: 18px; /* Tamaño de fuente general */
+    color: #333; /* Color de texto */
+  }
+  #voucherCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('img/alexander-grey-NkQD-RHhbvY-unsplash.jpg');
+    background-size: cover; /* Esto hará que la imagen cubra todo el contenedor */
+    background-position: center; /* Esto centrará la imagen */
+  }
+  
+  #qrcode img{
+    display: flex;
+    width: 200px;
+  }
+  #voucherCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #qrcode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #toText, #fromText, #validUntilText{
+color: #363636;
+  }

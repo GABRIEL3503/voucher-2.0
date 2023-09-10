@@ -2,17 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Voucher System</title>
+  <title>Voucher System Aniceta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-  <h1>Sistema de Vouchers</h1>
-  <button id="createVoucher">Crear Voucher</button>
-  <div id="qrcode"></div>
-  <button id="removeVoucher" style="display:none;">Eliminar QR</button> <!-- Nuevo botón -->
+  <span class="containermod">
+    <h1>Sistema de Vouchers Aniceta</h1>
+<!-- Modal for Metadata -->
+<div id="metadataModal" class="modal">
+  <div class="modal-content">
+    <h4>Detalles del Voucher</h4>
+    <label for="from">De parte de:</label>
+    <input type="text" id="from" name="from">
+    
+    <label for="to">Para:</label>
+    <input type="text" id="to" name="to">
+    
+    <label for="validUntil">Válido hasta:</label>
+    <input type="date" id="validUntil" name="validUntil">
+  </div>
+  <div class="modal-footer">
+    <button id="submitMetadata" class="modal-close">Aceptar</button>
+  </div>
+</div>
+</span>
+<!-- Card Layout -->
+<span class="cardcointainer">
+<div id="voucherCard" style="display:none;">
+  <div id="cardTop">
+    <img src="img/Imagen_de_WhatsApp_2023-08-27_a_las_16.09.44_-_copia-removebg-preview.png" alt="Company Logo" id="companyLogo">
+    <h1>VOUCHER DE REGALO</h1>
+  </div>
+  <div id="cardMiddle">
+    <div id="qrcode"></div>
+    <h2 id="toText">Para: </h2>
+    <h2 id="fromText">De parte de: </h2>
+    
+  </div>
+  <div id="cardBottom">
+    <h3 id="validUntilText">Válido hasta: </h3>
+    <!-- <div id="socialIcons">
+      <a href="#"><img src="whatsapp-icon.png" alt="WhatsApp"></a>
+      <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+    </div> -->
+  </div>
+</div>
 
+
+  <button id="createVoucher" style="display:none;">Crear Voucher</button>
+
+
+  <button id="showHistory">Historial</button>
+  <div id="historyContainer" style="display:none;">
+  </span>
   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 </body>
 </html>
