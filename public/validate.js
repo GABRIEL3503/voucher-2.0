@@ -4,7 +4,7 @@ const voucherID = urlParams.get('voucher_id');
 
 // Función para validar el voucher
 async function validateVoucher() {
-    const response = await fetch(`https://vauchers1-0.onrender.com/validate/${voucherID}`);
+    const response = await fetch(`https://vauchers2-0.onrender.com/validate/${voucherID}`);
     console.log("Backend Response:", response);
 
 

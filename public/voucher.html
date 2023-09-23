@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Voucher System Aniceta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,400&display=swap"
+    rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+  <span class="containermod">
+    <span class="titulo">
+      <h1 class="tracking-in-expand-fwd">Sistema de Vouchers</h1>
+      <h2>• ANICETA •</h2>
+    </span>
+
+    <!-- Modal for Metadata -->
+    <div id="metadataModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="cardcointainer">
+          <div id="voucherCard">
+            <div id="cardTop">
+              <img src="img/Imagen_de_WhatsApp_2023-08-27_a_las_16.09.44_-_copia-removebg-preview.png"
+                alt="Company Logo" id="companyLogo">
+              <h1>VOUCHER DE REGALO</h1>
+            </div>
+            <div id="cardMiddle">
+              <div id="qrcode"></div>
+              <h2 id="toText">Para: </h2>
+              <h2 id="fromText">De parte de: </h2>
+            </div>
+            <div id="cardBottom">
+              <h3 id="validUntilText">Válido hasta: </h3>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+
+    <video id="videoBG" autoplay muted loop>
+      <source src="img/Snow.webm" type="video/webm">
+    </video>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const voucherID = urlParams.get('id');
+
+      async function fetchVoucherDetails() {
+        const response = await fetch(`https://vauchers2-0.onrender.com/voucher/${voucherID}`);
+        if (response.ok) {
+          const data = await response.json();
+          displayVoucher(data);
+        } else {
+          // Manejar error
+        }
+      }
+
+      fetchVoucherDetails();
+      function displayVoucher(data) {
+        // Rellenar los detalles del voucher en el modal
+        document.getElementById('fromText').textContent = `De parte de: ${data.from_text}`;
+        document.getElementById('toText').textContent = `Para: ${data.to_text}`;
+        // ... (otros campos)
+
+        // Generar el código QR
+        new QRCode(document.getElementById("qrcode"), {
+          text: `https://vauchers2-0.onrender.com/validate.html?voucher_id=${data.id}`,
+          width: 128,
+          height: 128
+        });
+
+        // Mostrar el modal
+        const modal = document.getElementById('metadataModal');
+        modal.style.display = 'block';
+      }
+
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

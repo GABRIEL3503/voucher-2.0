@@ -82,3 +82,20 @@ app.get('/history', (req, res) => {
     res.status(200).json(rows);
   });
 });
+
+
+app.get('/voucher/:id', (req, res) => {
+  const { id } = req.params;
+  const query = 'SELECT * FROM vouchers WHERE id = ?';
+  db.get(query, [id], (err, row) => {
+    if (err) {
+      res.status(500).send('Error interno del servidor');
+      return;
+    }
+    if (!row) {
+      res.status(404).send('Voucher no encontrado');
+      return;
+    }
+    res.status(200).json(row);
+  });
+});

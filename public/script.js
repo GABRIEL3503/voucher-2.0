@@ -12,7 +12,7 @@ function generateVoucherID() {
     console.log("Generated Voucher ID:", id);
 
     // Enviar petición al backend para crear un nuevo voucher
-    const response = await fetch('https://vauchers1-0.onrender.com/create', {
+    const response = await fetch('https://vauchers2-0.onrender.com/create', {
       
       method: 'POST',
       headers: {
@@ -24,7 +24,7 @@ function generateVoucherID() {
     if (response.ok) {
       // Generar QR con el ID del voucher
       new QRCode(document.getElementById("qrcode"), {
-        text: `https://vauchers1-0.onrender.com/validate.html?voucher_id=${id}`,
+        text: `https://vauchers2-0.onrender.com/validate.html?voucher_id=${id}`,
         width: 128,
         height: 128
       });
@@ -33,11 +33,12 @@ function generateVoucherID() {
     
   
   // Mostrar alerta de éxito con Sweet Alert
-  Swal.fire(
-    '¡Creado!',
-    'El voucher ha sido creado exitosamente.',
-    'success'
-  ).then(() => {
+  Swal.fire({
+    title: '¡Voucher creado!',
+    text: `Ahora puedes compartir este enlace: https://vauchers2-0.onrender.com/voucher.html?id=${id}`,
+    icon: 'success',
+    confirmButtonText: 'Genial'
+  }).then(() => {
     // Crear el botón "Nuevo Voucher"
     const newVoucherButton = document.createElement('button');
     newVoucherButton.innerHTML = 'Nuevo Voucher';
@@ -130,7 +131,7 @@ document.getElementById('submitMetadata').addEventListener('click', function() {
 // Endpoint para obtener el historial de vouchers
 // Función para mostrar el historial de vouchers
 async function showHistory() {
-  const response = await fetch('https://vauchers1-0.onrender.com/history');
+  const response = await fetch('https://vauchers2-0.onrender.com/history');
   if (response.ok) {
     const vouchers = await response.json();
     const historyContainer = document.getElementById('historyContainer');
