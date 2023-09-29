@@ -20,7 +20,7 @@ body {
   }
   
   .modal-content {
-    height: 695px;
+    height: auto;
     background: #fff;
     padding: 64px;
     width: 80%;
