@@ -40,6 +40,10 @@ app.post('/login',
   function(req, res) {
     res.redirect('/');
   });
+  app.get('/login', (req, res) => {
+    res.sendFile(__dirname + '/public/login.html');
+  });
+  
 
 // Crear una nueva base de datos o abrir una existente
 const db = new sqlite3.Database('./voucher_system.db');
