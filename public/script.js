@@ -22,7 +22,7 @@ preConfirm: () => {
   })
   .then(response => {
     if (!response.ok) {
-      throw new Error('Credenciales incorrectas');
+      throw new Error('Contraseña o usuario incorrecto');
     }
     return response.json();
   })
@@ -32,7 +32,7 @@ preConfirm: () => {
     document.getElementById('overlay').style.display = 'none';
   })
   .catch(error => {
-    console.error('Error:', error);
+    Swal.showValidationMessage('Error:', error);
   });
 }
 
