@@ -64,12 +64,12 @@ db.run(`CREATE TABLE IF NOT EXISTS vouchers (
 
 // Middleware
 app.use(bodyParser.json());
-app.use(express.static('public'));
 // Endpoint para crear un nuevo voucher
 // Para servir la página HTML de creación de vouchers
 app.get('/create', ensureAuthenticated, (req, res) => {
   res.sendFile(__dirname + '/public/create.html');
 });
+app.use(express.static('public'));
 
 // Para manejar la lógica de creación de un voucher
 app.post('/create', ensureAuthenticated, (req, res) => {
@@ -84,6 +84,7 @@ app.post('/create', ensureAuthenticated, (req, res) => {
     res.status(200).send('Voucher creado exitosamente');
   });
 });
+
 
 
 // Iniciar el servidor
