@@ -20,7 +20,12 @@ preConfirm: () => {
     },
     body: JSON.stringify({ username: login, password })
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Credenciales incorrectas');
+    }
+    return response.json();
+  })
   .then(data => {
     localStorage.setItem('token', data.token);
     // Eliminar o esconder la capa opaca
