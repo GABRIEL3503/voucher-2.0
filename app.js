@@ -1,6 +1,45 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const app = express();
+
+
+app.use(session({ secret: 'tu_secreto_aqui', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    if (username === "tu_usuario" && password === "tu_contraseña") {
+      return done(null, { id: 1, name: "Usuario" });
+    } else {
+      return done(null, false);
+    }
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  done(null, { id: 1, name: "Usuario" });
+});
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
+
+app.post('/login',
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
 
 // Crear una nueva base de datos o abrir una existente
 const db = new sqlite3.Database('./voucher_system.db');
@@ -12,13 +51,12 @@ db.run(`CREATE TABLE IF NOT EXISTS vouchers (
     redeemed INTEGER
 )`);
 
-const app = express();
 
 // Middleware
 app.use(bodyParser.json());
 app.use(express.static('public'));
 // Endpoint para crear un nuevo voucher
-app.post('/create', (req, res) => {
+app.post('/create', ensureAuthenticated, (req, res) => {
     console.log("Petición recibida en /create:", req.body);
     const { id, message, from_text, to_text, valid_until } = req.body;  // Agregar nuevos campos
     const query = 'INSERT INTO vouchers (id, message, from_text, to_text, valid_until, redeemed) VALUES (?, ?, ?, ?, ?, 0)';  // Actualizar query
@@ -39,7 +77,7 @@ app.listen(3000, () => {
 
 
 // Endpoint para validar un voucher
-app.get('/validate/:id', async (req, res) => {
+app.get('/validate/:id', ensureAuthenticated, async (req, res) => {
   const { id } = req.params;
   const query = 'SELECT * FROM vouchers WHERE id = ?';
   db.get(query, [id], (err, row) => {
