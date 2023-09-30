@@ -1,3 +1,43 @@
+document.addEventListener("DOMContentLoaded", function() {
+  Swal.fire({
+    title: 'Iniciar Sesión',
+    html:
+      '<input type="text" id="login" class="swal2-input" placeholder="Usuario">' +
+      '<input type="password" id="password" class="swal2-input" placeholder="Contraseña">',
+    confirmButtonText: 'Iniciar Sesión',
+    focusConfirm: false,
+    allowOutsideClick: false,  // Esto evita que el modal se cierre al hacer clic fuera
+  // En el preConfirm del modal de SweetAlert2
+preConfirm: () => {
+  const login = Swal.getPopup().querySelector('#login').value;
+  const password = Swal.getPopup().querySelector('#password').value;
+
+  // Llamada al endpoint de autenticación
+  fetch('https://vauchers2-0.onrender.com/authenticate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ username: login, password })
+  })
+  .then(response => response.json())
+  .then(data => {
+    localStorage.setItem('token', data.token);
+    // Eliminar o esconder la capa opaca
+    document.getElementById('overlay').style.display = 'none';
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+  });
+});
+
+
+
+
+
 // Función para generar un ID aleatorio para el voucher
 function generateVoucherID() {
     return Math.random().toString(36).substr(2, 9);
@@ -12,7 +52,8 @@ function generateVoucherID() {
     console.log("Generated Voucher ID:", id);
 
     // Enviar petición al backend para crear un nuevo voucher
-    const response = await fetch('https://vauchers2-0.onrender.com/create', {
+    // const response = await fetch('https://vauchers2-0.onrender.com/create', {
+      const response = await fetch('https://vauchers2-0.onrender.com/create', {
       
       method: 'POST',
       headers: {
@@ -131,7 +172,7 @@ document.getElementById('submitMetadata').addEventListener('click', function() {
 // Endpoint para obtener el historial de vouchers
 // Función para mostrar el historial de vouchers
 async function showHistory() {
-  const response = await fetch('https://vauchers2-0.onrender.com/history');
+  const response = await fetch('hhttps://vauchers2-0.onrender.com/history');
   if (response.ok) {
     const vouchers = await response.json();
     const historyContainer = document.getElementById('historyContainer');

@@ -1,6 +1,39 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
+const jwt = require('jsonwebtoken');
+
+const app = express();  // Mueve esta línea hacia arriba
+
+// Middleware
+app.use(bodyParser.json());
+app.use(express.static('public'));
+
+app.post('/authenticate', (req, res) => {
+  const { username, password } = req.body;
+  if(username === "usuario" && password === "usuario123") {
+    const token = jwt.sign({ username }, 'tu_secreto_aqui', { expiresIn: '1h' });
+    res.json({ token });
+  } else {
+    res.status(401).send('Credenciales incorrectas');
+  }
+});
+function verifyJWT(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  
+  if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+  
+  jwt.verify(token, 'tu_secreto_aqui', function(err, decoded) {
+    if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+    
+    // Si todo está bien, guarda el ID para usar en otras rutas
+    req.userId = decoded.id;
+    next();
+  });
+}
+
+
 
 // Crear una nueva base de datos o abrir una existente
 const db = new sqlite3.Database('./voucher_system.db');
@@ -12,23 +45,18 @@ db.run(`CREATE TABLE IF NOT EXISTS vouchers (
     redeemed INTEGER
 )`);
 
-const app = express();
-
-// Middleware
-app.use(bodyParser.json());
-app.use(express.static('public'));
 // Endpoint para crear un nuevo voucher
 app.post('/create', (req, res) => {
-    console.log("Petición recibida en /create:", req.body);
-    const { id, message, from_text, to_text, valid_until } = req.body;  // Agregar nuevos campos
-    const query = 'INSERT INTO vouchers (id, message, from_text, to_text, valid_until, redeemed) VALUES (?, ?, ?, ?, ?, 0)';  // Actualizar query
-    db.run(query, [id, message, from_text, to_text, valid_until], function(err) {  // Agregar nuevos parámetros
-      if (err) {
-        res.status(500).send('Error al crear el voucher');
-        return;
-      }
-    res.status(200).send('Voucher creado exitosamente');
-  });
+  console.log("Petición recibida en /create:", req.body);
+  const { id, message, from_text, to_text, valid_until } = req.body;  // Agregar nuevos campos
+  const query = 'INSERT INTO vouchers (id, message, from_text, to_text, valid_until, redeemed) VALUES (?, ?, ?, ?, ?, 0)';  // Actualizar query
+  db.run(query, [id, message, from_text, to_text, valid_until], function(err) {  // Agregar nuevos parámetros
+    if (err) {
+      res.status(500).send('Error al crear el voucher');
+      return;
+    }
+  res.status(200).send('Voucher creado exitosamente');
+});
 });
 
 
@@ -39,7 +67,7 @@ app.listen(3000, () => {
 
 
 // Endpoint para validar un voucher
-app.get('/validate/:id', async (req, res) => {
+app.get('/validate/:id', verifyJWT, async  (req, res) => {
   const { id } = req.params;
   const query = 'SELECT * FROM vouchers WHERE id = ?';
   db.get(query, [id], (err, row) => {
