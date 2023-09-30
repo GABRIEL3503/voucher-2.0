@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", function() {
     allowOutsideClick: false,  // Esto evita que el modal se cierre al hacer clic fuera
   // En el preConfirm del modal de SweetAlert2
 preConfirm: () => {
-  const login = Swal.getPopup().querySelector('#login').value;
-  const password = Swal.getPopup().querySelector('#password').value;
+  let login = Swal.getPopup().querySelector('#login').value.trim().toLowerCase();
+  let password = Swal.getPopup().querySelector('#password').value.trim().toLowerCase();
+
 
   // Llamada al endpoint de autenticación
   fetch('https://vauchers2-0.onrender.com/authenticate', {
@@ -32,7 +33,12 @@ preConfirm: () => {
     document.getElementById('overlay').style.display = 'none';
   })
   .catch(error => {
-    Swal.showValidationMessage('Error:', error);
+    Swal.close();
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Contraseña o usuario incorrecto'
+    });
   });
 }
 
