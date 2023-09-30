@@ -34,6 +34,12 @@ function ensureAuthenticated(req, res, next) {
   }
   res.redirect('/login');
 }
+app.use((req, res, next) => {
+  console.log('Sesión:', req.session);
+  console.log('Usuario autenticado:', req.isAuthenticated());
+  next();
+});
+
 
 app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
@@ -60,15 +66,21 @@ db.run(`CREATE TABLE IF NOT EXISTS vouchers (
 app.use(bodyParser.json());
 app.use(express.static('public'));
 // Endpoint para crear un nuevo voucher
+// Para servir la página HTML de creación de vouchers
+app.get('/create', ensureAuthenticated, (req, res) => {
+  res.sendFile(__dirname + '/public/create.html');
+});
+
+// Para manejar la lógica de creación de un voucher
 app.post('/create', ensureAuthenticated, (req, res) => {
-    console.log("Petición recibida en /create:", req.body);
-    const { id, message, from_text, to_text, valid_until } = req.body;  // Agregar nuevos campos
-    const query = 'INSERT INTO vouchers (id, message, from_text, to_text, valid_until, redeemed) VALUES (?, ?, ?, ?, ?, 0)';  // Actualizar query
-    db.run(query, [id, message, from_text, to_text, valid_until], function(err) {  // Agregar nuevos parámetros
-      if (err) {
-        res.status(500).send('Error al crear el voucher');
-        return;
-      }
+  console.log("Petición recibida en /create:", req.body);
+  const { id, message, from_text, to_text, valid_until } = req.body;  // Agregar nuevos campos
+  const query = 'INSERT INTO vouchers (id, message, from_text, to_text, valid_until, redeemed) VALUES (?, ?, ?, ?, ?, 0)';  // Actualizar query
+  db.run(query, [id, message, from_text, to_text, valid_until], function(err) {  // Agregar nuevos parámetros
+    if (err) {
+      res.status(500).send('Error al crear el voucher');
+      return;
+    }
     res.status(200).send('Voucher creado exitosamente');
   });
 });
