@@ -90,9 +90,6 @@ function generateVoucherID() {
     html: `
     Ahora puedes compartir este enlace: <a href="https://vauchers2-0.onrender.com/voucher.html?id=${id}" target="_blank">https://vauchers2-0.onrender.com/voucher.html?id=${id}</a>
     <br>
-    // <button id="shareButton" class="swal2-confirm swal2-styled" style="background-image: url('./img/share-alt-regular-24.png'); background-size: cover;">
-    //   <!-- Puedes dejar este espacio vacío si solo quieres mostrar el ícono -->
-    // </button>
     `,
     icon: 'success',
     showConfirmButton: true 
