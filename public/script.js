@@ -87,9 +87,15 @@ function generateVoucherID() {
   // Mostrar alerta de éxito con Sweet Alert
   Swal.fire({
     title: '¡Voucher creado!',
-    text: `Ahora puedes compartir este enlace: https://vauchers2-0.onrender.com/voucher.html?id=${id}`,
+    html: `
+    Ahora puedes compartir este enlace: <a href="https://vauchers2-0.onrender.com/voucher.html?id=${id}" target="_blank">https://vauchers2-0.onrender.com/voucher.html?id=${id}</a>
+    <br>
+    <button id="shareButton" class="swal2-confirm swal2-styled" style="background-image: url('./img/share-alt-regular-24.png'); background-size: cover;">
+      <!-- Puedes dejar este espacio vacío si solo quieres mostrar el ícono -->
+    </button>
+    `,
     icon: 'success',
-    confirmButtonText: 'Genial'
+    showConfirmButton: false 
   }).then(() => {
     // Crear el botón "Nuevo Voucher"
     const newVoucherButton = document.createElement('button');
@@ -99,6 +105,21 @@ function generateVoucherID() {
     newVoucherButton.addEventListener('click', function() {
       location.reload();
     });
+    document.getElementById('shareButton').addEventListener('click', function() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Mi Voucher',
+          text: 'Mira este increíble voucher que acabo de crear.',
+          url: `https://vauchers2-0.onrender.com/voucher.html?id=${id}`,
+        })
+        .then(() => console.log('Contenido compartido exitosamente'))
+        .catch((error) => console.log('Hubo un error al compartir', error));
+      } else {
+        // Fallback para navegadores que no soportan la API Web Share
+        alert(`Tu navegador no soporta la API Web Share. Copia y pega este enlace para compartir: https://vauchers2-0.onrender.com/voucher.html?id=${id}`);
+      }
+    });
+  
     document.body.appendChild(newVoucherButton);
   
     // Crear el botón "Descargar Voucher"
@@ -225,3 +246,5 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {
   colorDark : "#000000",
   colorLight : "#ffffff",
 });
+
+
