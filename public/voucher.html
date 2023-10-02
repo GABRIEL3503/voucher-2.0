@@ -74,9 +74,13 @@
 
       fetchVoucherDetails();
       function displayVoucher(data) {
+        const validUntilDate = new Date(`${data.valid_until}T00:00:00`);
+
         // Rellenar los detalles del voucher en el modal
         document.getElementById('fromText').textContent = `De parte de: ${data.from_text}`;
         document.getElementById('toText').textContent = `Para: ${data.to_text}`;
+        document.getElementById('validUntilText').textContent = `Válido hasta: ${validUntilDate.toLocaleDateString('es-ES')}`;
+
         // ... (otros campos)
 
         // Generar el código QR
@@ -87,21 +91,6 @@
         });
 
 
-        const validUntilDate = new Date(data.valid_until);
-
-  // Formatear la fecha en el formato "dd mm aa" usando toLocaleDateString
-  const formattedDate = validUntilDate.toLocaleDateString('es-ES', {
-    day: '2-digit',
-    month: '2-digit',
-    year: '2-digit'
-  });
-
-  // Actualizar el elemento HTML
-  document.getElementById('validUntilText').textContent = `Válido hasta: ${formattedDate}`;
-        // Mostrar el modal
-        const modal = document.getElementById('metadataModal');
-        modal.style.display = 'block';
-      }
 
     </script>
     <script src="script.js"></script>
