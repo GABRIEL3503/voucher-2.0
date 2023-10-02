@@ -113,8 +113,9 @@ body {
     color: #333; /* Color de texto */
   }
   #voucherCard {
-  
-    background-image: url('img/alexander-grey-NkQD-RHhbvY-unsplash.jpg');
+ background: rgb(195,167,179);
+  background: linear-gradient(90deg, rgba(195,167,179,1) 50%, rgba(111,116,201,1) 100%);;
+    /* background-image: url('img/alexander-grey-NkQD-RHhbvY-unsplash.jpg'); */
     background-size: cover; /* Esto hará que la imagen cubra todo el contenedor */
     background-position: center; /* Esto centrará la imagen */
   }

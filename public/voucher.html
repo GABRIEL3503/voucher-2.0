@@ -16,11 +16,11 @@
 </head>
 
 <body>
-  <span class="containermod">
+  <!-- <span class="containermod">
     <span class="titulo">
       <h1 class="tracking-in-expand-fwd">Sistema de Vouchers</h1>
       <h2>• ANICETA •</h2>
-    </span>
+    </span> -->
 
     <!-- Modal for Metadata -->
     <div id="metadataModal" class="modal" style="display:none;">
@@ -87,8 +87,17 @@
         });
 
 
-        const validUntilDate = new Date(data.valid_until).toLocaleDateString(); // Convierte la fecha a un formato legible
-  document.getElementById('validUntilText').textContent = `Válido hasta: ${validUntilDate}`;
+        const validUntilDate = new Date(data.valid_until);
+
+  // Formatear la fecha en el formato "dd mm aa" usando toLocaleDateString
+  const formattedDate = validUntilDate.toLocaleDateString('es-ES', {
+    day: '2-digit',
+    month: '2-digit',
+    year: '2-digit'
+  });
+
+  // Actualizar el elemento HTML
+  document.getElementById('validUntilText').textContent = `Válido hasta: ${formattedDate}`;
         // Mostrar el modal
         const modal = document.getElementById('metadataModal');
         modal.style.display = 'block';
