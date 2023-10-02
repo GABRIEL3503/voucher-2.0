@@ -277,6 +277,8 @@ body {
 }
 
 .custom-link h2 {
+  font-size: 32px;
+
   color: inherit; /* Hereda el color del texto del elemento padre */
 }
 .custom-link {
@@ -290,11 +292,9 @@ body {
 }
 
 .whatsapp-icon {
-  width: 40px;  /* Cambia esto según el tamaño que desees */
-  height: 40px; /* Cambia esto según el tamaño que desees */
-  margin-right: 10px; /* Espacio a la derecha del icono */
-}
-
+  width: 68px;
+  height: 76px;
+  margin-right: 10px;}
 h2 {
   margin: 0; /* Elimina el margen predeterminado del h2 */
 }
