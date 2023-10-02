@@ -134,7 +134,7 @@ body {
   }
   
   #toText, #fromText, #validUntilText{
-    font-size: 32px; 
+    font-size: 38px; 
 color: #363636;
   }
   html body.swal2-height-auto {
