@@ -35,7 +35,7 @@
             <div id="cardMiddle">
               <div id="qrcode"></div>
               <h2 id="toText">Para: </h2>
-              <h2 id="fromText">De parte de: </h2>
+              <!-- <h2 id="fromText">De parte de: </h2> -->
             </div>
             <div id="cardBottom">
               <h3 id="validUntilText">Válido hasta: </h3>
@@ -77,8 +77,8 @@
         const validUntilDate = new Date(`${data.valid_until}T00:00:00`);
 
         // Rellenar los detalles del voucher en el modal
-        document.getElementById('fromText').textContent = `De parte de: ${data.from_text}`;
-        document.getElementById('toText').textContent = `Para: ${data.to_text}`;
+      
+        document.getElementById('toText').textContent = `Hola: ${data.to_text} reciviste un voucher de regalo de parte de  ${data.from_text}`;
         document.getElementById('validUntilText').textContent = `Válido hasta: ${validUntilDate.toLocaleDateString('es-ES')}`;
 
         // ... (otros campos)
