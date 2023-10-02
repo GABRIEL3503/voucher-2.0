@@ -113,8 +113,15 @@ body {
     color: #333; /* Color de texto */
   }
   #voucherCard {
-    background: rgb(195,167,179);
-    background: linear-gradient(90deg, rgb(195 167 179 / 42%) 50%, rgb(111 116 201 / 59%) 100%);
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+    /* background: rgb(195,167,179);
+    background: linear-gradient(90deg, rgb(195 167 179 / 42%) 50%, rgb(111 116 201 / 59%) 100%); */
     /* background-image: url('img/alexander-grey-NkQD-RHhbvY-unsplash.jpg'); */
     background-size: cover; /* Esto hará que la imagen cubra todo el contenedor */
     background-position: center; /* Esto centrará la imagen */
