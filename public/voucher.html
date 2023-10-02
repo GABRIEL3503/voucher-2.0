@@ -30,7 +30,7 @@
             <div id="cardTop">
               <img src="img/Imagen_de_WhatsApp_2023-08-27_a_las_16.09.44_-_copia-removebg-preview.png"
                 alt="Company Logo" id="companyLogo">
-              <h1>VOUCHER DE REGALO</h1>
+              <!-- <h1>VOUCHER DE REGALO</h1> -->
             </div>
             <div id="cardMiddle">
               <div id="qrcode"></div>
@@ -78,7 +78,7 @@
 
         // Rellenar los detalles del voucher en el modal
       
-        document.getElementById('toText').textContent = `Hola: ${data.to_text} reciviste un voucher de regalo de parte de  ${data.from_text}`;
+        document.getElementById('toText').textContent = `¡Hola ${data.to_text}! reciviste regalo de ${data.from_text}`;
         document.getElementById('validUntilText').textContent = `Válido hasta: ${validUntilDate.toLocaleDateString('es-ES')}`;
 
         // ... (otros campos)
