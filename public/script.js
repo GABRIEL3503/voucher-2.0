@@ -245,3 +245,26 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {
 });
 
 
+let tokenExpiryTime = 3600; // en segundos, igual al tiempo de expiración del token
+const refreshTokenBeforeExpiry = () => {
+  setTimeout(async () => {
+    const response = await fetch('/refresh', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ refreshToken: localStorage.getItem('refreshToken') })
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('token', data.accessToken);
+      refreshTokenBeforeExpiry(); // refrescar de nuevo antes de que el nuevo token expire
+    } else {
+      // manejar error, posiblemente forzar al usuario a iniciar sesión de nuevo
+    }
+  }, (tokenExpiryTime - 60) * 1000); // refrescar 60 segundos antes de que el token expire
+};
+
+// Llamar a la función después de autenticación exitosa
+refreshTokenBeforeExpiry();

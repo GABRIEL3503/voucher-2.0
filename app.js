@@ -12,12 +12,14 @@ app.use(express.static('public'));
 app.post('/authenticate', (req, res) => {
   const { username, password } = req.body;
   if(username === "usuario" && password === "usuario123") {
-    const token = jwt.sign({ username }, 'tu_secreto_aqui', { expiresIn: '1h' });
-    res.json({ token });
+    const accessToken = jwt.sign({ username }, 'tu_secreto_aqui', { expiresIn: '1h' });
+    const refreshToken = jwt.sign({ username }, 'tu_secreto_refresh_aqui', { expiresIn: '7d' });
+    res.json({ accessToken, refreshToken });
   } else {
     res.status(401).send('Credenciales incorrectas');
   }
 });
+
 function verifyJWT(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -125,5 +127,17 @@ app.get('/voucher/:id', (req, res) => {
       return;
     }
     res.status(200).json(row);
+  });
+});
+
+app.post('/refresh', (req, res) => {
+  const { refreshToken } = req.body;
+  if (!refreshToken) return res.status(401).send('No token provided.');
+
+  jwt.verify(refreshToken, 'tu_secreto_refresh_aqui', (err, decoded) => {
+    if (err) return res.status(403).send('Invalid token.');
+    
+    const accessToken = jwt.sign({ username: decoded.username }, 'tu_secreto_aqui', { expiresIn: '1h' });
+    res.json({ accessToken });
   });
 });
