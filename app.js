@@ -12,8 +12,8 @@ app.use(express.static('public'));
 app.post('/authenticate', (req, res) => {
   const { username, password } = req.body;
   if(username === "usuario" && password === "usuario123") {
-    const accessToken = jwt.sign({ username }, 'tu_secreto_aqui', { expiresIn: '1h' });
-    const refreshToken = jwt.sign({ username }, 'tu_secreto_refresh_aqui', { expiresIn: '7d' });
+    const accessToken = jwt.sign({ username }, 'tu_secreto_aqui');
+    const refreshToken = jwt.sign({ username }, 'tu_secreto_refresh_aqui');
     res.json({ accessToken, refreshToken });
   } else {
     res.status(401).send('Credenciales incorrectas');
@@ -30,7 +30,7 @@ function verifyJWT(req, res, next) {
     if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
     
     // Si todo está bien, guarda el ID para usar en otras rutas
-    req.userId = decoded.id;
+      req.username = decoded.username;
     next();
   });
 }
@@ -130,14 +130,14 @@ app.get('/voucher/:id', (req, res) => {
   });
 });
 
-app.post('/refresh', (req, res) => {
-  const { refreshToken } = req.body;
-  if (!refreshToken) return res.status(401).send('No token provided.');
+// app.post('/refresh', (req, res) => {
+//   const { refreshToken } = req.body;
+//   if (!refreshToken) return res.status(401).send('No token provided.');
 
-  jwt.verify(refreshToken, 'tu_secreto_refresh_aqui', (err, decoded) => {
-    if (err) return res.status(403).send('Invalid token.');
+//   jwt.verify(refreshToken, 'tu_secreto_refresh_aqui', (err, decoded) => {
+//     if (err) return res.status(403).send('Invalid token.');
     
-    const accessToken = jwt.sign({ username: decoded.username }, 'tu_secreto_aqui', { expiresIn: '1h' });
-    res.json({ accessToken });
-  });
-});
+//     const accessToken = jwt.sign({ username: decoded.username }, 'tu_secreto_aqui', { expiresIn: '1h' });
+//     res.json({ accessToken });
+//   });
+// });
