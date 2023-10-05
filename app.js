@@ -22,20 +22,20 @@ app.post('/authenticate', (req, res) => {
 });
 
 
-function verifyJWT(req, res, next) {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+// function verifyJWT(req, res, next) {
+//   const authHeader = req.headers['authorization'];
+//   const token = authHeader && authHeader.split(' ')[1];
   
-  if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+//   if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
   
-  jwt.verify(token, 'tu_secreto_aqui', function(err, decoded) {
-    if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+//   jwt.verify(token, 'tu_secreto_aqui', function(err, decoded) {
+//     if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
     
-    // Si todo está bien, guarda el ID para usar en otras rutas
-      req.username = decoded.username;
-    next();
-  });
-}
+//     // Si todo está bien, guarda el ID para usar en otras rutas
+//       req.username = decoded.username;
+//     next();
+//   });
+// }
 
 
 

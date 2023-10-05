@@ -35,10 +35,13 @@
             <div id="cardMiddle">
               <div id="qrcode"></div>
               <h2 id="toText">Para: </h2>
+
+              <img id="infoIcon" class="jello-horizontal" src="./img/regalo-removebg-preview.png" alt="Info" style="cursor:pointer;">
+
               <!-- <h2 id="fromText">De parte de: </h2> -->
             </div>
             <div id="cardBottom">
-              <a href="https://api.whatsapp.com/send?phone=2994189519&text=Hola!%20Tengo%20un%20link%20de%20vaucher%20para%20retirar" class="custom-link">
+              <a href="https://api.whatsapp.com/send?phone=2994189519&text=Hola!%20Tengo%20un%20link%20de%20voucher%20para%20retirar" class="custom-link">
                 <div class="flex-container">
                   <box-icon name='whatsapp' type='logo' color='#27a21a' class="whatsapp-icon"></box-icon>
                   <h2>Contactanos para retirarlo</h2>
@@ -97,6 +100,9 @@
         // Mostrar el modal
         const modal = document.getElementById('metadataModal');
         modal.style.display = 'block';
+        document.getElementById('infoIcon').addEventListener('click', function() {
+    alert(`Válido por: ${data.message}`);
+  });
       }
 
     </script>
