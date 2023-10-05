@@ -9,16 +9,18 @@ const app = express();  // Mueve esta línea hacia arriba
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+// Endpoint para autenticar al usuario
 app.post('/authenticate', (req, res) => {
   const { username, password } = req.body;
-  if(username === "usuario" && password === "usuario123") {
+  if (username === "usuario" && password === "usuario123") {
+    // Generar un token de acceso sin tiempo de expiración
     const accessToken = jwt.sign({ username }, 'tu_secreto_aqui');
-    const refreshToken = jwt.sign({ username }, 'tu_secreto_refresh_aqui');
-    res.json({ accessToken, refreshToken });
+    res.json({ accessToken });
   } else {
     res.status(401).send('Credenciales incorrectas');
   }
 });
+
 
 function verifyJWT(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -68,15 +70,19 @@ app.listen(3000, () => {
 });
 
 
-// Endpoint para validar un voucher
 app.get('/validate/:id', verifyJWT, async  (req, res) => {
   const { id } = req.params;
+  console.log("ID a validar:", id);  // Agregar log
+
   const query = 'SELECT * FROM vouchers WHERE id = ?';
   db.get(query, [id], (err, row) => {
     if (err) {
+      console.error("Error en la consulta:", err);  // Agregar log
       res.status(500).send('Error interno del servidor');
       return;
     }
+
+    console.log("Resultado de la consulta:", row);  // Agregar log
 
     if (!row) {
       res.status(404).send('Voucher no encontrado');
@@ -91,6 +97,7 @@ app.get('/validate/:id', verifyJWT, async  (req, res) => {
     // Marcar como canjeado
     db.run('UPDATE vouchers SET redeemed = 1 WHERE id = ?', [id], function(err) {
       if (err) {
+        console.error("Error al actualizar:", err);  // Agregar log
         res.status(500).send('Error al actualizar el estado del voucher');
         return;
       }
@@ -98,6 +105,7 @@ app.get('/validate/:id', verifyJWT, async  (req, res) => {
     });
   });
 });
+
 
 
 

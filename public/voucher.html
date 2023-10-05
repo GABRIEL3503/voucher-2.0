@@ -86,7 +86,8 @@
 
         // Generar el código QR
         new QRCode(document.getElementById("qrcode"), {
-          text: `https://vauchers2-0.onrender.com/validate.html?voucher_id=${data.id}`,
+          text: `https://vauchers2-0.onrender.com/validate.html?id=${data.id}`,
+
           width: 128,
           height: 128
         });

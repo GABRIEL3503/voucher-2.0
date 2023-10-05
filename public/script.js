@@ -199,7 +199,7 @@ document.getElementById('submitMetadata').addEventListener('click', function() {
 
 // Función para mostrar el historial de vouchers
 async function showHistory() {
-  const response = await fetch('hhttps://vauchers2-0.onrender.com/history');
+  const response = await fetch('https://vauchers2-0.onrender.com/history');
   if (response.ok) {
     const vouchers = await response.json();
     const historyContainer = document.getElementById('historyContainer');

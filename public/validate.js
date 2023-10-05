@@ -44,8 +44,8 @@ preConfirm: () => {
 
 // Obtener el ID del voucher desde la URL
 const urlParams = new URLSearchParams(window.location.search);
-const voucherID = urlParams.get('voucher_id');
-
+const voucherID = urlParams.get('id');
+console.log("Voucher ID obtenido:", voucherID);
 // Función para validar el voucher
 async function validateVoucher() {
   const token = localStorage.getItem('token');  // Obtener el token del almacenamiento local
@@ -76,6 +76,7 @@ async function validateVoucher() {
     );
   }
 }
+
 // async function validateVoucher() {
 //   try {
 //     const response = await fetch(`http://localhost:3000/validate/${voucherID}`);
