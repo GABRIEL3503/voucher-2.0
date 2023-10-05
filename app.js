@@ -70,7 +70,7 @@ app.listen(3000, () => {
 });
 
 
-app.get('/validate/:id', verifyJWT, async  (req, res) => {
+app.get('/validate/:id', async  (req, res) => {
   const { id } = req.params;
   console.log("ID a validar:", id);  // Agregar log
 
