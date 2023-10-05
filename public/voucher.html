@@ -97,12 +97,20 @@
 
 
         
-        // Mostrar el modal
-        const modal = document.getElementById('metadataModal');
-        modal.style.display = 'block';
-        document.getElementById('infoIcon').addEventListener('click', function() {
-    alert(`Válido por: ${data.message}`);
+ // Mostrar el modal
+const modal = document.getElementById('metadataModal');
+modal.style.display = 'block';
+
+// Añadir evento de clic al ícono de información
+document.getElementById('infoIcon').addEventListener('click', function() {
+  Swal.fire({
+    title: 'Información del Voucher',
+    text: `Válido por: ${data.message}`,
+    icon: 'info',
+    confirmButtonText: 'Entendido'
   });
+});
+
       }
 
     </script>
