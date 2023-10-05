@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+  const currentURL = window.location.pathname;
+
+  // Verificar si estamos en las páginas donde se debe mostrar el modal
+  const shouldShowModal = currentURL.endsWith('/') || currentURL.endsWith('validate.html');
+
+  // Si estamos en una de las páginas correctas, muestra el modal de inicio de sesión
+  if (shouldShowModal) {
+
   Swal.fire({
     title: 'Iniciar Sesión',
     html:
@@ -43,6 +52,7 @@ preConfirm: () => {
 }
 
   });
+}
 });
 
 
