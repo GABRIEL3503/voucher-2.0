@@ -86,7 +86,7 @@ body {
   }
   #voucherCard{
     justify-content: space-around;
-    height:1000px ;
+    height:1340px ;
     width: 737px;
     display: flex;
     flex-direction: column;
@@ -376,6 +376,7 @@ h2 {
 
 
 .jello-horizontal {
+  height: 235px;
 	-webkit-animation: jello-horizontal 0.9s 2s infinite forwards;
 	        animation: jello-horizontal 0.9s 2s infinite forwards;
 }
