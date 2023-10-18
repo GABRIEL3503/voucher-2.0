@@ -23,7 +23,7 @@ preConfirm: () => {
 
 
   // Llamada al endpoint de autenticación
-  fetch('https://vauchers2-0.onrender.com/authenticate', {
+  fetch('https://anicetashowroom.com.ar/authenticate', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ function generateVoucherID() {
 
     // Enviar petición al backend para crear un nuevo voucher
     // const response = await fetch('https://vauchers2-0.onrender.com/create', {
-      const response = await fetch('https://vauchers2-0.onrender.com/create', {
+      const response = await fetch('https://anicetashowroom.com.ar/create', {
       
       method: 'POST',
       headers: {
@@ -86,7 +86,7 @@ function generateVoucherID() {
     if (response.ok) {
       // Generar QR con el ID del voucher
       new QRCode(document.getElementById("qrcode"), {
-        text: `https://vauchers2-0.onrender.com/validate.html?voucher_id=${id}`,
+        text: `https://anicetashowroom.com.ar/validate.html?voucher_id=${id}`,
         width: 128,
         height: 128
       });
@@ -98,7 +98,7 @@ function generateVoucherID() {
   Swal.fire({
     title: '¡Voucher creado!',
     html: `
-    Ahora puedes compartir este enlace: <a href="https://vauchers2-0.onrender.com/voucher.html?id=${id}" target="_blank">https://vauchers2-0.onrender.com/voucher.html?id=${id}</a>
+    Ahora puedes compartir este enlace: <a href="https://anicetashowroom.com.ar/voucher.html?id=${id}" target="_blank">https://anicetashowroom.com.ar/voucher.html?id=${id}</a>
     <br>
     `,
     icon: 'success',
@@ -117,13 +117,13 @@ function generateVoucherID() {
         navigator.share({
           title: 'Mi Voucher',
           text: 'Mira este increíble voucher que acabo de crear.',
-          url: `https://vauchers2-0.onrender.com/voucher.html?id=${id}`,
+          url: `https://anicetashowroom.com.ar/voucher.html?id=${id}`,
         })
         .then(() => console.log('Contenido compartido exitosamente'))
         .catch((error) => console.log('Hubo un error al compartir', error));
       } else {
         // Fallback para navegadores que no soportan la API Web Share
-        alert(`Tu navegador no soporta la API Web Share. Copia y pega este enlace para compartir: https://vauchers2-0.onrender.com/voucher.html?id=${id}`);
+        alert(`Tu navegador no soporta la API Web Share. Copia y pega este enlace para compartir: https://anicetashowroom.com.ar/voucher.html?id=${id}`);
       }
     });
   
@@ -209,7 +209,7 @@ document.getElementById('submitMetadata').addEventListener('click', function() {
 
 // Función para mostrar el historial de vouchers
 async function showHistory() {
-  const response = await fetch('https://vauchers2-0.onrender.com/history');
+  const response = await fetch('https://anicetashowroom.com.ar/history');
   if (response.ok) {
     const vouchers = await response.json();
     const historyContainer = document.getElementById('historyContainer');

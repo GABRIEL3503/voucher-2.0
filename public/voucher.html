@@ -67,7 +67,7 @@
       const voucherID = urlParams.get('id');
 
       async function fetchVoucherDetails() {
-        const response = await fetch(`https://vauchers2-0.onrender.com/voucher/${voucherID}`);
+        const response = await fetch(`https://anicetashowroom.com.ar/voucher/${voucherID}`);
         if (response.ok) {
           const data = await response.json();
           displayVoucher(data);
@@ -89,7 +89,7 @@
 
         // Generar el código QR
         new QRCode(document.getElementById("qrcode"), {
-          text: `https://vauchers2-0.onrender.com/validate.html?id=${data.id}`,
+          text: `https://anicetashowroom.com.ar/validate.html?id=${data.id}`,
 
           width: 128,
           height: 128

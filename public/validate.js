@@ -15,7 +15,7 @@ preConfirm: () => {
   const password = Swal.getPopup().querySelector('#password').value;
 
   // Llamada al endpoint de autenticación
-  fetch('https://vauchers2-0.onrender.com/authenticate', {
+  fetch('https://anicetashowroom.com.ar/authenticate', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ async function validateVoucher() {
   const token = localStorage.getItem('token');  // Obtener el token del almacenamiento local
   console.log("Token almacenado:", token);
    // Realizar la petición al servidor con el token en el encabezado
-  const response = await fetch(`https://vauchers2-0.onrender.com/validate/${voucherID}`, {
+  const response = await fetch(`https://anicetashowroom.com.ar/validate/${voucherID}`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
