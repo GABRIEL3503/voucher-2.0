@@ -380,6 +380,6 @@ h2 {
 	-webkit-animation: jello-horizontal 0.9s 2s infinite forwards;
 	        animation: jello-horizontal 0.9s 2s infinite forwards;
 }
-.whatsapp-share-btn{
+#whatsapp-share-btn{
   font-size: 1em!important;
 }
