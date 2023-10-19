@@ -94,16 +94,37 @@ function generateVoucherID() {
 
     
   
-  // Mostrar alerta de éxito con Sweet Alert
-  Swal.fire({
-    title: '¡Voucher creado!',
-    html: `
-    Ahora puedes compartir este enlace: <a href="https://anicetashowroom.com.ar/voucher.html?id=${id}" target="_blank">https://anicetashowroom.com.ar/voucher.html?id=${id}</a>
-    <br>
-    `,
-    icon: 'success',
-    showConfirmButton: true 
-  }).then(() => {
+      Swal.fire({
+        title: '¡Voucher creado!',
+        html: `
+          Ahora puedes compartir este enlace: 
+          <a href="https://anicetashowroom.com.ar/voucher.html?id=${id}" target="_blank">https://anicetashowroom.com.ar/voucher.html?id=${id}</a>
+          <br>
+          <button id="whatsapp-share-btn" class="swal2-confirm swal2-styled" style="border-left-color:#00E676;border-right-color:#00E676;">Compartir en WhatsApp</button>
+        `,
+        icon: 'success',
+        showConfirmButton: true,
+        onOpen: () => {
+          // Añadir un evento de clic al botón de WhatsApp una vez que el modal está abierto
+          document.getElementById('whatsapp-share-btn').addEventListener('click', function() {
+            // La URL del voucher para compartir
+            const urlToShare = `https://anicetashowroom.com.ar/voucher.html?id=${id}`;
+      
+            // Texto que acompañará al enlace
+            const text = 'Echa un vistazo a este increíble voucher: ';
+      
+            // Codificar el texto y la URL
+            const encodedText = encodeURIComponent(text);
+            const encodedURL = encodeURIComponent(urlToShare);
+      
+            // Crear la URL completa de WhatsApp
+            const whatsappURL = `https://wa.me/?text=${encodedText}${encodedURL}`;
+      
+            // Abrir WhatsApp
+            window.open(whatsappURL, '_blank');
+          });
+        }
+      }).then(() => {
     // Crear el botón "Nuevo Voucher"
     const newVoucherButton = document.createElement('button');
     newVoucherButton.innerHTML = 'Nuevo Voucher';
