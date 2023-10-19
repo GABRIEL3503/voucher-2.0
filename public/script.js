@@ -111,7 +111,7 @@ function generateVoucherID() {
             const urlToShare = `https://anicetashowroom.com.ar/voucher.html?id=${id}`;
       
             // Texto que acompañará al enlace
-            const text = 'Echa un vistazo a este increíble voucher: ';
+            const text = 'Recibiste un Voucher de Regalo: ';
       
             // Codificar el texto y la URL
             const encodedText = encodeURIComponent(text);
