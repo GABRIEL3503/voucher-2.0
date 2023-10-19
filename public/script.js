@@ -22,7 +22,7 @@ preConfirm: () => {
   let password = Swal.getPopup().querySelector('#password').value.trim().toLowerCase();
 
 
-  // Llamada al endpoint de autenticación
+
   fetch('https://anicetashowroom.com.ar/authenticate', {
     method: 'POST',
     headers: {

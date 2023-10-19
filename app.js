@@ -12,7 +12,7 @@ app.use(express.static('public'));
 // Endpoint para autenticar al usuario
 app.post('/authenticate', (req, res) => {
   const { username, password } = req.body;
-  if (username === "anicetas" && password === "lluviadecolibri") {
+  if (username === "admin" && password === "admin123") {
     // Generar un token de acceso sin tiempo de expiración
     const accessToken = jwt.sign({ username }, 'tu_secreto_aqui');
     res.json({ accessToken });
