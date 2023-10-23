@@ -383,3 +383,11 @@ h2 {
 #whatsapp-share-btn{
   font-size: 1em!important;
 }
+
+.redes{
+  font-size: 33px;
+  margin-top: 43px;
+  display: flex;
+  justify-content: center;  
+
+}
