@@ -385,7 +385,7 @@ h2 {
 }
 
 .redes{
-  font-size: 33px!important;
+
   margin-top: 43px!important;
   display: flex!important;
   justify-content: center!important;  
@@ -395,3 +395,6 @@ h2 {
 .redes img{
   width: 60px!important;
 }
+
+.redes h2{
+  font-size: 33px!important;}
