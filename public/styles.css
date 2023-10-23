@@ -54,14 +54,14 @@ body {
     width: 100%;
     padding: 21px;
     margin-top: 9px;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc!important;
     border-radius: 4px;
   }
   
   button {
-    font-size: 30px;
-    background-color: #b97f77;
-    color: white;
+    font-size: 30px!important;
+    background-color: #b97f77!important;
+    color: white!important;
     padding: 22px 43px;
     border: none;
     border-radius: 9px;
@@ -95,7 +95,7 @@ body {
 
   #showHistory{
     margin-top: 247px;
-    background-color:#8c938f;
+    background-color:#8c938f!important;
   }.center-button {
     display: block;
     margin: auto;
@@ -103,14 +103,14 @@ body {
   }
   #voucherCard {
     margin-bottom: 32px;
-    background: #ffffff; /* Fondo blanco */
-    border: 2px solid #ccc; /* Borde gris */
+    background: #ffffff!important; /* Fondo blanco */
+    border: 2px solid #ccc!important; /* Borde gris */
     border-radius: 10px; /* Esquinas redondeadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    padding: 50px; /* Espaciado interno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)!important; /* Sombra sutil */
+    padding: 50px!important; /* Espaciado interno */
     text-align: center; /* Centrar el contenido de texto */
     font-size: 18px; /* Tamaño de fuente general */
-    color: #333; /* Color de texto */
+    color: #333!important; /* Color de texto */
   }
   #voucherCard {
     /* background: rgb(195,167,179);
@@ -135,7 +135,7 @@ body {
   
   #toText, #fromText, #validUntilText{
     font-size: 38px; 
-color: #363636;
+color: #363636!important;
   }
   html body.swal2-height-auto {
     height: 99vh !important;
@@ -251,14 +251,14 @@ body {
 
 .titulo h2{
   letter-spacing: 6px;
-  color: #333;
+  color: #333!important;
   font-family: 'Crimson Text','Montserrat', sans-serif;
   margin-top: 2px;
   font-size: 73px;
 }
 
 .titulo h1 {
-  color: #314157;
+  color: #314157!important;
   font-size: 63px!important;
 }
 
@@ -269,22 +269,22 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.7)!important;
   z-index: 1;
 }
 .custom-link {
   text-decoration: none; /* Elimina el subrayado */
-  color: inherit; /* Hereda el color del texto del elemento padre */
+  color: inherit!important; /* Hereda el color del texto del elemento padre */
 }
 
 .custom-link h2 {
   font-size: 38px;
 
-  color: inherit; /* Hereda el color del texto del elemento padre */
+  color: inherit!important; /* Hereda el color del texto del elemento padre */
 }
 .custom-link {
   text-decoration: none;
-  color: inherit;
+  color: inherit!important;
 }
 
 .flex-container {
