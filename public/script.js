@@ -103,7 +103,7 @@ function generateVoucherID() {
           <button id="whatsapp-share-btn" class="swal2-confirm swal2-styled" style="border-left-color:#00E676;border-right-color:#00E676;">Compartir en WhatsApp</button>
         `,
         icon: 'success',
-        showConfirmButton: true,
+    
         onOpen: () => {
           // Añadir un evento de clic al botón de WhatsApp una vez que el modal está abierto
           document.getElementById('whatsapp-share-btn').addEventListener('click', function() {
@@ -178,7 +178,7 @@ function generateVoucherID() {
 }// Función para mostrar el modal de Sweet Alert para el mensaje del premio
 function showPrizePrompt() {
     Swal.fire({
-      title: 'Ingrese el mensaje del premio',
+      title: 'Ingrese el valor del Voucher',
       input: 'text',
       inputPlaceholder: 'Ejemplo: Premio: Camiseta Gratis'
     }).then((result) => {
